@@ -1,0 +1,23 @@
+services:
+  comfyui-geotiff:
+    build: .
+    container_name: comfyui-geotiff-upscaler
+    ports:
+      - "8188:8188"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CLI_ARGS=--listen 0.0.0.0 --port 8188 --enable-cors-header
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ./storage/models:/app/models
+      - ./storage/custom_nodes:/app/custom_nodes
+      - ./storage/output:/app/output
+      - ./storage/input:/app/input
+      - ./storage/workflows:/app/user/default/workflows
+    restart: unless-stopped

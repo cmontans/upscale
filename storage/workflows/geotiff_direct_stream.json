@@ -1,0 +1,52 @@
+{
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UpscaleModelLoader",
+      "pos": [50, 200],
+      "size": [340, 80],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        { "name": "UPSCALE_MODEL", "type": "UPSCALE_MODEL", "links": [1], "slot_index": 0 }
+      ],
+      "properties": { "Node name for S&R": "UpscaleModelLoader" },
+      "widgets_values": ["RealESRGAN_x4plus.pth"]
+    },
+    {
+      "id": 2,
+      "type": "GeoTIFFDirectStreamUpscaler",
+      "pos": [450, 150],
+      "size": [420, 300],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        { "name": "upscale_model", "type": "UPSCALE_MODEL", "link": 1 }
+      ],
+      "outputs": [
+        { "name": "saved_paths", "type": "STRING", "links": null }
+      ],
+      "properties": { "Node name for S&R": "GeoTIFFDirectStreamUpscaler" },
+      "widgets_values": [
+        "Sentinel-2_mosaic_2025_Q3_30STG_0_0_RGB.tif",
+        "Sentinel2_DirectStream_4x",
+        512,
+        32,
+        "Auto (Smart Satellite & Contrast Stretch)",
+        "DEFLATE"
+      ]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "UPSCALE_MODEL"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

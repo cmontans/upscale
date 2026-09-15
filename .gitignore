@@ -1,0 +1,38 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Models & Big Weights
+storage/models/
+!storage/models/upscale_models/.gitkeep
+
+# Custom nodes (track only ComfyUI-GeoTIFF-Upscaler)
+storage/custom_nodes/*
+!storage/custom_nodes/ComfyUI-GeoTIFF-Upscaler/
+
+# User Inputs and Generated Outputs
+storage/output/*
+!storage/output/.gitkeep
+storage/input/*
+!storage/input/.gitkeep
+storage/user/
+
+# Large test images / rasters in root
+*.tif
+*.tiff
+*.geotif
+*.geotiff
+*.zip
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
