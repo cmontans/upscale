@@ -32,7 +32,9 @@ RUN pip install --no-cache-dir \
     scipy \
     pyproj \
     spandrel \
+    spandrel_extra_arches \
     opencv-python-headless \
+    scikit-image \
     imageio \
     piexif \
     einops
