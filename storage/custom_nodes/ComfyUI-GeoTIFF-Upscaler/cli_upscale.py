@@ -41,6 +41,11 @@ def load_model(model_name="RealESRGAN_x4plus.pth", models_dir="/app/models/upsca
 
     import comfy.utils
     from spandrel import ModelLoader
+    try:
+        import spandrel_extra_arches
+        spandrel_extra_arches.install()
+    except Exception:
+        pass
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"[Model] Loading '{model_name}' on {device}...")

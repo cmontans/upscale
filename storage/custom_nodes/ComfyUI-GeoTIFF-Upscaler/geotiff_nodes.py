@@ -798,7 +798,13 @@ class GeoTIFFDirectStreamUpscaler:
             count = src.count
             nodata = src.nodata
 
-            scale = getattr(upscale_model, 'scale', 4)
+            scale = getattr(upscale_model, 'scale', None)
+            if scale is None or scale < 1:
+                with torch.no_grad():
+                    sample = torch.zeros((1, 3, 64, 64), device=device)
+                    out_sample = upscale_model(sample)
+                    scale = max(out_sample.shape[2] // 64, 1)
+
             w_out, h_out = w_in * scale, h_in * scale
             new_transform = Affine(transform.a / scale, transform.b / scale, transform.c,
                                    transform.d / scale, transform.e / scale, transform.f)
